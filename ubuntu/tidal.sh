@@ -2,6 +2,7 @@
 
 # add user to audio group
 sudo usermod -a -G audio $USER
+echo "Please log out for user to be added to audio group"
 
 sudo apt install git jackd2 qjackctl zlib1g-dev gcc g++ ghc cabal-install
 
@@ -11,7 +12,6 @@ SuperDirtVersion=$(git ls-remote https://github.com/musikinformatik/SuperDirt.gi
 
 echo "Found SuperDirt version $SuperDirtVersion"
 
-sclang <<EOF
-Quarks.checkForUpdates({Quarks.install("SuperDirt", "$SuperDirtVersion"); thisProcess.recompile()})
-EOF
+cabal update; cabal install tidal --lib
 
+echo "To install SuperDirt in SupperCollider run the following command in 'sclang':\nQuarks.checkForUpdates({Quarks.install(\"SuperDirt\", \"$SuperDirtVersion\"); thisProcess.recompile()})"
