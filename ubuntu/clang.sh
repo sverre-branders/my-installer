@@ -10,7 +10,7 @@ install_clang ()
         sudo apt update
     fi
 
-    local packages=("clang" "clang-tidy")
+    local packages=("clang" "clang-tidy" "clang-format")
     for package in "${packages[@]}"; do
         apt-cache show "$package" > /dev/null 2>&1 || {
             echo "Package '$package' not available!"
